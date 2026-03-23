@@ -149,6 +149,7 @@ def pipeline_run():
     # image_filename = snap_picture()
     send_data()
     # check_dirs(image_filename)
+    return data
 
 
 if __name__ == "__main__":
