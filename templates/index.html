@@ -5,12 +5,11 @@
     </head>
     <body>
         <div class="weather_block">
-            [Date] <br />{{ stats[0] }}<br />
-            [Temperature] <br />{{ stats[1] }} F<br />
-            [Pressure] <br />{{ stats[2] }} hPa<br />
-            [Humidity] <br />{{ stats[3] }} %<br />
+            |----( [ Date ] [ {{ stats[0] }} ] ) ~~ ( [ Temperature {{ stats[1]
+            }} F ] ) ~~ ( [ Pressure {{ stats[2] }} hPa ] ) ~~ ( [ Humidity {{
+            stats[3] }} % ] ) ----|
         </div>
-        <br /><br />
+
         <img
             src="{{url_for('static', filename='dailyMinMaxMean.png')}}"
             alt="Temperature Graph"
