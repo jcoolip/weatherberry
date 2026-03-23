@@ -14,6 +14,6 @@ body {
 }
 
 .weather_block {
-    padding: 4rem;
+    align-items: right;
     background: dimgrey;
 }
