@@ -111,8 +111,8 @@ def plot_graph():
         df = df.sort_values("date")
         fig, ax = plt.subplots()
         ax.plot(df["date"], df["temp"], label="Temp F")
-        ax.xaxis.set_major_formatter(mdates.DateFormatter("%m:%d"))
-        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+        ax.xaxis.set_major_locator(mdates.HourLocator())
         plt.xticks(rotation=45)
 
         # Optional: horizontal lines for min, max, mean
