@@ -1,10 +1,13 @@
 from flask import Flask, render_template
 
+from pipeline import pipeline_run
+
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
+    stats = pipeline_run()
     return render_template("index.html", stats=stats)
 
 
