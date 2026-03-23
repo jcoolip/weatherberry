@@ -4,7 +4,7 @@ from datetime import datetime
 
 def capture():
 	try:
-		now = datetime.now()
+	    now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 		cam = Picamera2()
 
 		cam_config = cam.create_still_configuration(main={"size": (1920,1080)}, buffer_count=1)
