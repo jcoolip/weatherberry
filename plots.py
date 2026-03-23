@@ -12,7 +12,7 @@ def plot_graph():
         df["date"] = pd.to_datetime(df["date"], errors="coerce")
         df = df.dropna(subset=["date"])
         df = df.sort_values("date")
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(10, 7))
 
         # Plotting the data
         ax.plot(df["date"], df["temp"], label="Temp F")
@@ -96,7 +96,7 @@ def plot_graph():
         plt.tight_layout()
 
         # Saving to static location for Flask
-        fig.savefig("./static/temp_plot.png")
+        fig.savefig("./static/dailyMinMaxMean.png")
         plt.show()
         plt.close(fig)
     except Exception as e:
