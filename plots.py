@@ -16,11 +16,13 @@ def plot_graph():
         ax.plot(df["date"], df["temp"], label="Temp F")
 
         # Setting up the x-axis to display only specific days
-        locator = mdates.HourLocator(interval=6)  # Adjust maxticks as needed
-        formatter = mdates.DateFormatter("%H:%M")
+        locator = mdates.HourLocator(interval=24)
+        formatter = mdates.DateFormatter("%m-%d")
         ax.xaxis.set_major_locator(locator)
         ax.xaxis.set_major_formatter(formatter)
-        ax.xaxis.set_minor_locator(NullLocator())
+        ax.xaxis.set_minor_locator(mdates.HourLocator(interval=2))
+        ax.xaxis.set_minor_formatter(mdates.DateFormatter("%H:%M"))
+        # ax.xaxis.set_minor_locator(NullLocator())
 
         # Rotating the labels for better visibility
         fig.autofmt_xdate()
@@ -38,7 +40,7 @@ def plot_graph():
         plt.tight_layout()
 
         # Saving to static location for Flask
-        fig.savefig("./static/temp_plot.png")
+        fig.savefig("static/temp_plot.png")
         plt.show()
         plt.close(fig)
     except Exception as e:
