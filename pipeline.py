@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import smbus2
 import sysrsync
+from matplotlib.ticker import NullLocator
 from picamera2 import Picamera2
 
 bme_addr = 0x76
@@ -107,25 +108,40 @@ def snap_picture():
 
 def plot_graph():
     try:
-        df = pd.read_csv("./data/records.csv", parse_dates=["date"])
+        df = pd.read_csv("data/records.csv", parse_dates=["date"])
+        df["date"] = pd.to_datetime(df["date"], errors="coerce")
+        df = df.dropna(subset=["date"])
         df = df.sort_values("date")
         fig, ax = plt.subplots()
+
+        # Plotting the data
         ax.plot(df["date"], df["temp"], label="Temp F")
-        ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
-        ax.xaxis.set_major_locator(mdates.HourLocator())
-        plt.xticks(rotation=45)
+
+        # Setting up the x-axis to display only specific days
+        locator = mdates.HourLocator(interval=6)  # Adjust maxticks as needed
+        formatter = mdates.DateFormatter("%H:%M")
+        ax.xaxis.set_major_locator(locator)
+        ax.xaxis.set_major_formatter(formatter)
+        ax.xaxis.set_minor_locator(NullLocator())
+
+        # Rotating the labels for better visibility
+        fig.autofmt_xdate()
 
         # Optional: horizontal lines for min, max, mean
         ax.axhline(y=df["temp"].mean(), color="green", linestyle=":", label="Mean")
         ax.axhline(y=df["temp"].min(), color="blue", linestyle=":", label="Min")
         ax.axhline(y=df["temp"].max(), color="red", linestyle=":", label="Max")
 
+        # Setting the y-axis limits
         ax.set_ylim(df["temp"].min() - 2, df["temp"].max() + 2)
+
+        # Adding legend and title
         ax.legend()
         plt.tight_layout()
 
-        # save to static location for Flask
+        # Saving to static location for Flask
         fig.savefig("./static/temp_plot.png")
+        plt.show()
         plt.close(fig)
     except Exception as e:
         print(f"Error generating plot: {e}")
