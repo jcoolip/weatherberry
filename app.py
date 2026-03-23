@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    stats = pipeline_run()
+    stats = pipeline_run(False)
     return render_template("index.html", stats=stats)
 
 

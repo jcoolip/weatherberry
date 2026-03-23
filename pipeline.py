@@ -159,16 +159,17 @@ def send_data():
     # print("sysrsync")
 
 
-def pipeline_run():
+def pipeline_run(append):
     # kill_picam()
     data = read_bme()
-    append_csv(data)
+    if append:
+        append_csv(data)
+        send_data()
     # image_filename = snap_picture()
-    send_data()
     plot_graph()
     # check_dirs(image_filename)
     return data
 
 
 if __name__ == "__main__":
-    pipeline_run()
+    pipeline_run(True)
