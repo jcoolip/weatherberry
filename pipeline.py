@@ -142,10 +142,14 @@ def send_data():
     # print("sysrsync")
 
 
-if __name__ == "__main__":
+def pipeline_run():
     # kill_picam()
     data = read_bme(now)
     append_csv(data)
     # image_filename = snap_picture()
     send_data()
     # check_dirs(image_filename)
+
+
+if __name__ == "__main__":
+    pipeline_run()
