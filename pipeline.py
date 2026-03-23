@@ -148,6 +148,7 @@ def pipeline_run():
     append_csv(data)
     # image_filename = snap_picture()
     send_data()
+    plot_graph()
     # check_dirs(image_filename)
     return data
 
