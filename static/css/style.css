@@ -1,14 +1,19 @@
-:root {}
-
-body {
-	min-height: 100vh;
-	padding: 1rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: black;
-	font-family: Helvetica, sans-serif;
-	color: white;
-	text-align: center;
+:root {
 }
 
+body {
+    min-height: 100vh;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    font-family: Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.weather_block {
+    padding: 4rem;
+    background: dimgrey;
+}
