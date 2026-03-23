@@ -39,10 +39,10 @@ def read_data():
 
         # plot
         try:
-            df = pd.read_csv("./data/records.csv", parse_dates=["time"])
-            df = df.sort_values("time")
+            df = pd.read_csv("./data/records.csv", parse_dates=["date"])
+            df = df.sort_values("date")
             fig, ax = plt.subplots()
-            ax.plot(df["time"], df["tempF"], label="Temp F")
+            ax.plot(df["date"], df["tempF"], label="Temp F")
             ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
             ax.xaxis.set_major_locator(mdates.HourLocator())
             plt.xticks(rotation=45)
