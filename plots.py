@@ -34,7 +34,12 @@ def plot_graph():
 
         # Optional: horizontal lines for min, max, mean
         ax.axhline(
-            y=df["temp"].mean(), color="green", linestyle="-.", label="Mean", alpha=0.3
+            y=df["temp"].mean(),
+            color="green",
+            linestyle="-.",
+            label="Mean",
+            linewidth=1,
+            alpha=0.3,
         )
         ax.axhline(
             y=df["temp"].min(), color="blue", linestyle="solid", label="Min", alpha=0.4
@@ -45,6 +50,7 @@ def plot_graph():
 
         tmin = df["temp"].min()
         tmax = df["temp"].max()
+        tmean = df["temp"].mean()
 
         dmin = df.loc[df["temp"].idxmin(), "date"]
         dmax = df.loc[df["temp"].idxmax(), "date"]
@@ -69,10 +75,20 @@ def plot_graph():
             bbox=bbox,
         )
 
+        ax.annotate(
+            f"{tmean:.1f}°F",
+            (dmin, tmean),
+            xytext=(0, 10),
+            textcoords="offset points",
+            ha="center",
+            bbox=bbox,
+        )
+
         # Setting the y-axis limits
         ax.set_ylim(df["temp"].min() - 2, df["temp"].max() + 2)
 
         ax.grid(axis="x", which="major", linestyle="solid", linewidth=2, alpha=1)
+        ax.grid(axis="x", which="minor", linestyle="solid", linewidth=0.4, alpha=0.4)
         ax.grid(axis="y", which="major", linestyle="dashed", linewidth=1, alpha=0.5)
 
         # Adding legend and title
