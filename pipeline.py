@@ -115,7 +115,7 @@ def plot_graph():
         df["date"] = pd.to_datetime(df["date"], errors="coerce")
         df = df.dropna(subset=["date"])
         df = df.sort_values("date")
-        fig, ax = plt.subplots(figsize=(10, 7))
+        fig, ax = plt.subplots()
 
         # Plotting the data
         ax.plot(df["date"], df["temp"], label="Temp F")
@@ -131,6 +131,8 @@ def plot_graph():
         ax.xaxis.set_minor_locator(min_locator)
         ax.xaxis.set_minor_formatter(min_formatter)
         # ax.xaxis.set_minor_locator(NullLocator())
+
+        ax.xaxis.set_tick_params(which="major", pad=14)  # increase to move further down
 
         # Rotating the labels for better visibility
         fig.autofmt_xdate()
@@ -200,7 +202,7 @@ def plot_graph():
 
         # Saving to static location for Flask
         fig.savefig("./static/dailyMinMaxMean.png")
-        # plt.show()
+        plt.show()
         plt.close(fig)
     except Exception as e:
         print(f"Error generating plot: {e}")
