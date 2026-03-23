@@ -40,7 +40,7 @@ def check_dirs(image_filename):
 
 	remote_image_check = remote_image_path + image_filename
 
-	result = subprocess.run(['ssh', rsync_ssh, f"test -f {remote_image_check}"],)
+	result = subprocess.run(['ssh', rsync_ssh, f"test -f {remote_image_check}"])
 	if result.returncode == 0:
 		print("remote exists, rm local picture")
 		os.remove(local_image_path+image_filename)
@@ -60,7 +60,7 @@ def read_bme():
 
 def append_csv(data):
 
-	with open(csv_path+csv_filename, mode='a', newline='') as file:
+	with open('/home/pi/dev/weatherberry/data/records.csv', mode='a', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow(data)
 
@@ -99,14 +99,14 @@ def snap_picture():
 	return image_filename
 
 def send_data(image_filename):
-	sysrsync.run(source='/home/pi/dev/weatherberry/data/images/'+image_filename, destination='/home/justin/dev/weatherberry/data/images/', destination_ssh='justin@oldie.lan', options=['-a'])
+	#sysrsync.run(source='/home/pi/dev/weatherberry/data/images/'+image_filename, destination='/home/justin/dev/weatherberry/data/images/', destination_ssh='justin@oldie.lan', options=['-a'])
 	sysrsync.run(source='/home/pi/dev/weatherberry/data/records.csv', destination='/home/justin/dev/weatherberry/data/', destination_ssh='justin@oldie.lan', options=['-a'])
-	print("sysrsync")
+	#print("sysrsync")
 
 if __name__ == "__main__":
-	kill_picam()
+	#kill_picam()
 	data = read_bme()
 	append_csv(data)
-	image_filename = snap_picture()
-	send_data(image_filename)
+	#image_filename = snap_picture()
+	send_data()
 	#check_dirs(image_filename)
