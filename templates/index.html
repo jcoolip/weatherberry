@@ -5,11 +5,11 @@
     </head>
     <body>
         <div class="weather_block">
-            DATE: {{ stats[0] }}<br />
-            TEMP: {{ stats[1] }} F<br />
-            PRESSURE: {{ stats[2] }} hPa<br />
-            HUM: {{ stats[3] }} %<br />
-        </div>
+            [Date] <br />{{ stats[0] }}<br />
+            [Temperature] <br />{{ stats[1] }} F<br />
+            [Pressure] <br />{{ stats[2] }} hPa<br />
+            [Humidity] <br />{{ stats[3] }} %<br />
+        </div><br /><br />
         <img
             src="{{url_for('static', filename='temp_plot.png')}}"
             alt="Temperature Graph"
