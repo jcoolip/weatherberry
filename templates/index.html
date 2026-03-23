@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Weatherberry</title>
+{% include "css.html" %}
+</head>
+<body>
+DATE: {{ stats[0] }}<br>
+TEMP: {{ stats[1] }} F<br>
+PRESSURE: {{ stats[2] }} hPa<br>
+HUM: {{ stats[3] }} %<br>
+
+<img src="{{url_for('static', filename='temp_plot.png')}}" alt="Temperature Graph">
+</body>
+</html>

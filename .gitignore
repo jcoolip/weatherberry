@@ -1,0 +1,8 @@
+__pycache__/
+build/
+dist/
+downloads/
+data/images/*.jpg
+data/*.csv
+.venv
+.env
