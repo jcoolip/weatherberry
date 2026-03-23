@@ -20,7 +20,7 @@ calibration_params = bme280.load_calibration_params(smbus, bme_addr)
 
 # csv_path = '/home/pi/dev/weatherberry/data/'
 
-now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+# now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
 base_dir = "/home/pi/dev/weatherberry/"
 
@@ -51,7 +51,8 @@ def check_dirs(image_filename):
         print(f"@@{image_filename}@@ missing from remote, no rm picture")
 
 
-def read_bme(now):
+def read_bme():
+    now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
     data = bme280.sample(smbus, bme_addr, calibration_params)
     tempF = round(c2f(data.temperature), 2)
     pressure = round(data.pressure, 2)
@@ -160,7 +161,7 @@ def send_data():
 
 def pipeline_run():
     # kill_picam()
-    data = read_bme(now)
+    data = read_bme()
     append_csv(data)
     # image_filename = snap_picture()
     send_data()
