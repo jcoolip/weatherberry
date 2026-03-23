@@ -199,8 +199,8 @@ def plot_graph():
         plt.tight_layout()
 
         # Saving to static location for Flask
-        fig.savefig("./static/temp_plot.png")
-        plt.show()
+        fig.savefig("./static/dailyMinMaxMean.png")
+        # plt.show()
         plt.close(fig)
     except Exception as e:
         print(f"Error generating plot: {e}")

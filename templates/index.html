@@ -9,9 +9,10 @@
             [Temperature] <br />{{ stats[1] }} F<br />
             [Pressure] <br />{{ stats[2] }} hPa<br />
             [Humidity] <br />{{ stats[3] }} %<br />
-        </div><br /><br />
+        </div>
+        <br /><br />
         <img
-            src="{{url_for('static', filename='temp_plot.png')}}"
+            src="{{url_for('static', filename='dailyMinMaxMean.png')}}"
             alt="Temperature Graph"
         />
     </body>
