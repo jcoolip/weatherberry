@@ -52,7 +52,7 @@ def check_dirs(image_filename):
 
 
 def read_bme():
-    now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = bme280.sample(smbus, bme_addr, calibration_params)
     tempF = round(c2f(data.temperature), 2)
     pressure = round(data.pressure, 2)
